@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export type TTodo = {
 	id: string;
 	task: string;
+	running: boolean;
 	completed: boolean;
 };
 type TTodoState = {
@@ -21,9 +22,16 @@ const todoSlice = createSlice({
 			state.todos.push({
 				id: id.toString(),
 				task: task,
+				running: false,
 				completed: false,
 			});
 		},
+		markAsRunning: (state, action) => {
+			state.todos = state.todos.map((todo) =>
+				todo.id === action.payload ? { ...todo, running: true } : todo
+			);
+		},
+
 		removeToDo: (state, action) => {
 			state.todos = state.todos.filter((todo) => todo.id !== action.payload);
 		},
@@ -41,5 +49,6 @@ const todoSlice = createSlice({
 		},
 	},
 });
-export const { addToDo, removeToDo, markAsDone, editTodo } = todoSlice.actions;
+export const { addToDo, markAsRunning, removeToDo, markAsDone, editTodo } =
+	todoSlice.actions;
 export default todoSlice.reducer;
