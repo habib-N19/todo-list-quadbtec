@@ -5,12 +5,10 @@ import { TTasksComponentProps } from '@/types'
 
 export default function TasksList({ tasks, handleMarkRunning, handleEdit, handleDelete, handleMarkAsDone, }: TTasksComponentProps) {
 
-    console.log(tasks)
     return (
         <div>
             {
-                tasks.map(task => <TaskCard key={task.id} task={task} handleEdit={handleEdit} handleMarkRunning={handleMarkRunning}
-                    handleMarkAsDone={handleMarkAsDone} handleDelete={handleDelete} />)
+                tasks.map(task => task.running === false && task.completed === false && <TaskCard key={task.id} task={task} handleEdit={handleEdit} handleMarkRunning={handleMarkRunning} handleMarkAsDone={handleMarkAsDone} handleDelete={handleDelete} />)
             }
         </div>
     )

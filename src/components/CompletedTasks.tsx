@@ -7,8 +7,7 @@ export default function CompletedTasksTasksList({ tasks, handleMarkRunning, hand
     return (
         <div>
             {
-                tasks.map(task => <TaskCard key={task.id} task={task} handleEdit={handleEdit} handleMarkRunning={handleMarkRunning}
-                    handleMarkAsDone={handleMarkAsDone} handleDelete={handleDelete} />)
+                tasks.map(task => task.completed && <TaskCard key={task.id} task={task} handleEdit={handleEdit} handleMarkRunning={handleMarkRunning} handleMarkAsDone={handleMarkAsDone} handleDelete={handleDelete} />)
             }
         </div>
     )
