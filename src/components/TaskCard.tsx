@@ -2,11 +2,15 @@
 import React from 'react'
 import { Card, CardContent, CardFooter, CardTitle } from './ui/card'
 import { Button } from './ui/button'
-import { CheckCheckIcon, DeleteIcon, Edit, PlayCircleIcon } from 'lucide-react';
+import { DeleteIcon, Edit, PlayCircleIcon, UserRoundMinusIcon } from 'lucide-react';
 import { TTaskCardProps } from '@/types';
 import { Badge } from './ui/badge';
+import { EnvelopeClosedIcon, ResetIcon } from '@radix-ui/react-icons';
+import EditTask from './EditTask';
 
-export default function TaskCard({ task, handleMarkRunning, handleEdit, handleDelete, handleMarkAsDone, }: TTaskCardProps) {
+export default function TaskCard({ task, handleMarkRunning, handleEdit, handleDelete, handleMarkAsDone, handleDefault }: TTaskCardProps) {
+
+
     return (
         <Card className='p-2'>
             <CardTitle className='text-right'>
@@ -16,10 +20,22 @@ export default function TaskCard({ task, handleMarkRunning, handleEdit, handleDe
             </CardTitle>
             <CardContent>{task.task}</CardContent>
             <CardFooter className='flex justify-between items-center gap-2'>
-                <Button onClick={() => handleMarkRunning(task.id)} variant='outline'><PlayCircleIcon /></Button>
-                <Button onClick={() => handleEdit(task.id)} variant='outline'><Edit></Edit></Button>
-                <Button onClick={() => handleMarkAsDone(task.id)} variant='secondary'><CheckCheckIcon /></Button>
-                <Button onClick={() => handleDelete(task.id)} variant='destructive'><DeleteIcon /></Button>
+                {
+                    task.running || task.completed ? <Button title='Reset' onClick={() => {
+                        handleDefault?.(task.id)
+                        console.log(task)
+                    }
+                    } variant='outline'><ResetIcon /></Button> : null
+                }
+                {
+                    !task.running && !task.completed ? <Button title='Mark as running' onClick={() => handleMarkRunning?.(task.id)} variant='outline'><PlayCircleIcon /></Button> : null
+                }
+                {
+                    !task.completed ? <Button title='Mark as Done' onClick={() => handleMarkAsDone?.(task.id)} variant='outline'><EnvelopeClosedIcon /></Button> : null
+                }
+                {/* <Button title='Edit task' onClick={() => handleEdit(task)} variant='outline'></Button> */}
+                <EditTask task={task} handleEdit={handleEdit} />
+                <Button title='Delete Task' onClick={() => handleDelete(task.id)} variant='destructive'><DeleteIcon /></Button>
             </CardFooter>
 
         </Card >

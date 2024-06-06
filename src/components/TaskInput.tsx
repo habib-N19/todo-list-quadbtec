@@ -25,8 +25,6 @@ export default function TaskInput() {
     });
     const onSubmit = (data: z.infer<typeof FormSchema>) => {
         dispatch(addToDo({ task: data.task }));
-
-        console.log(data);
     };
     return (
         <Form {...form}>

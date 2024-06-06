@@ -1,18 +1,27 @@
 'use client'
 import React from 'react'
-import TaskCard from './TaskCard'
 import TaskInput from './TaskInput'
 import TasksList from './TasksList'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
-import { editTodo, markAsDone, markAsRunning, removeToDo } from '@/redux/features/to-do/todoSlice'
+import { editTodo, makeDefault, markAsDone, markAsRunning, removeToDo } from '@/redux/features/to-do/todoSlice'
 import RunningTasks from './RunningTasks'
 import CompletedTasks from './CompletedTasks'
 
 export default function TasksContainer() {
     const dispatch = useAppDispatch()
     const tasks = useAppSelector(state => state.todo)
+
+    const handleDefault = (id: string) => {
+        console.log(id);
+        dispatch(makeDefault(id))
+    }
     const handleEdit = (data: any) => {
         console.log(data);
+        dispatch(editTodo({
+            id: data.id,
+            task: data.task
+        }))
+
     }
     const handleMarkRunning = (id: string) => {
         dispatch(markAsRunning(id))
@@ -35,13 +44,15 @@ export default function TasksContainer() {
                 <h1 className='text-center py-3 text-xl font-bold'>Tasks List</h1>
                 <TasksList tasks={tasks.todos} handleEdit={handleEdit} handleMarkRunning={handleMarkRunning}
                     handleMarkAsDone={handleMarkAsDone} handleDelete={handleDelete}
+
                 />
             </div>
             {/* Working */}
             <div className='border-r-2 pr-1 col-span-1 space-y-2'>
                 <h1 className='text-center py-3 text-xl font-bold'>Tasks Running</h1>
-                <RunningTasks tasks={tasks.todos} handleEdit={handleEdit} handleMarkRunning={handleMarkRunning}
+                <RunningTasks tasks={tasks.todos} handleEdit={handleEdit}
                     handleMarkAsDone={handleMarkAsDone} handleDelete={handleDelete}
+                    handleDefault={handleDefault}
                 />
 
 
@@ -50,7 +61,7 @@ export default function TasksContainer() {
             <div className='border-r-2 pr-1 col-span-1 space-y-2'>
                 <h1 className='text-center py-3 text-xl font-bold'>Done</h1>
                 <CompletedTasks tasks={tasks.todos} handleEdit={handleEdit} handleMarkRunning={handleMarkRunning}
-                    handleMarkAsDone={handleMarkAsDone} handleDelete={handleDelete}
+                    handleDelete={handleDelete} handleDefault={handleDefault}
                 />
 
 

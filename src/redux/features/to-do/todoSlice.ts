@@ -21,7 +21,13 @@ const todoSlice = createSlice({
 		},
 		markAsRunning: (state, action) => {
 			state.todos = state.todos.map((todo) =>
-				todo.id === action.payload ? { ...todo, running: true } : todo
+				todo.id === action.payload
+					? {
+							...todo,
+							running: !todo.running,
+							completed: false,
+					  }
+					: todo
 			);
 		},
 
@@ -30,7 +36,9 @@ const todoSlice = createSlice({
 		},
 		markAsDone: (state, action) => {
 			state.todos = state.todos.map((todo) =>
-				todo.id === action.payload ? { ...todo, completed: true } : todo
+				todo.id === action.payload
+					? { ...todo, completed: !todo.completed, running: false }
+					: todo
 			);
 		},
 		editTodo: (state, action) => {
@@ -40,8 +48,21 @@ const todoSlice = createSlice({
 					: todo
 			);
 		},
+		makeDefault: (state, action) => {
+			state.todos = state.todos.map((todo) =>
+				todo.id === action.payload
+					? { ...todo, running: false, completed: false }
+					: todo
+			);
+		},
 	},
 });
-export const { addToDo, markAsRunning, removeToDo, markAsDone, editTodo } =
-	todoSlice.actions;
+export const {
+	addToDo,
+	markAsRunning,
+	removeToDo,
+	markAsDone,
+	editTodo,
+	makeDefault,
+} = todoSlice.actions;
 export default todoSlice.reducer;
