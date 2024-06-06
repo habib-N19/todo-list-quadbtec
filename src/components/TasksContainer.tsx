@@ -1,6 +1,7 @@
 import React from 'react'
-import TaskCard from '../TaskCard'
-import TaskInput from '../TaskInput'
+import TaskCard from './TaskCard'
+import TaskInput from './TaskInput'
+import TasksList from './TasksList'
 
 export default function TasksContainer() {
     return (
@@ -12,25 +13,19 @@ export default function TasksContainer() {
             </div>
             {/* TODO */}
             <div className='border-r-2 pr-1 col-span-1 space-y-2'>
-                <h1 className='text-center py-3 text-xl font-bold'>Currently Working</h1>
-                <TaskCard></TaskCard>
-                <TaskCard></TaskCard>
-                <TaskCard></TaskCard>
+                <h1 className='text-center py-3 text-xl font-bold'>Tasks List</h1>
+                <TasksList />
             </div>
             {/* Working */}
             <div className='border-r-2 pr-1 col-span-1 space-y-2'>
-                <h1 className='text-center py-3 text-xl font-bold'>Tasks Pending</h1>
+                <h1 className='text-center py-3 text-xl font-bold'>Tasks Running</h1>
 
-                <TaskCard></TaskCard>
-                <TaskCard></TaskCard>
-                <TaskCard></TaskCard>
+
             </div>
             {/* Done */}
             <div className='border-r-2 pr-1 col-span-1 space-y-2'>
                 <h1 className='text-center py-3 text-xl font-bold'>Done</h1>
-                <TaskCard></TaskCard>
-                <TaskCard></TaskCard>
-                <TaskCard></TaskCard>
+
 
             </div>
 
