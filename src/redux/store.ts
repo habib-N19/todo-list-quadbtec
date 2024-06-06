@@ -1,10 +1,33 @@
 import { configureStore } from "@reduxjs/toolkit";
 import todoReducer from "./features/to-do/todoSlice";
+import storage from "./storage";
+import {
+	FLUSH,
+	PAUSE,
+	PERSIST,
+	PURGE,
+	REGISTER,
+	REHYDRATE,
+	persistReducer,
+} from "redux-persist";
+
+const persistConfig = {
+	key: "root",
+	storage,
+};
+const persistedReducer = persistReducer(persistConfig, todoReducer);
+
 export const makeStore = () => {
 	return configureStore({
 		reducer: {
-			todo: todoReducer,
+			todo: persistedReducer,
 		},
+		middleware: (getDefaultMiddleware) =>
+			getDefaultMiddleware({
+				serializableCheck: {
+					ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+				},
+			}),
 	});
 };
 
