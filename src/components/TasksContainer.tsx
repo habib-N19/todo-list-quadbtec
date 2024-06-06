@@ -5,6 +5,8 @@ import TaskInput from './TaskInput'
 import TasksList from './TasksList'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { editTodo, markAsDone, markAsRunning, removeToDo } from '@/redux/features/to-do/todoSlice'
+import RunningTasks from './RunningTasks'
+import CompletedTasks from './CompletedTasks'
 
 export default function TasksContainer() {
     const dispatch = useAppDispatch()
@@ -38,12 +40,18 @@ export default function TasksContainer() {
             {/* Working */}
             <div className='border-r-2 pr-1 col-span-1 space-y-2'>
                 <h1 className='text-center py-3 text-xl font-bold'>Tasks Running</h1>
+                <RunningTasks tasks={tasks.todos} handleEdit={handleEdit} handleMarkRunning={handleMarkRunning}
+                    handleMarkAsDone={handleMarkAsDone} handleDelete={handleDelete}
+                />
 
 
             </div>
             {/* Done */}
             <div className='border-r-2 pr-1 col-span-1 space-y-2'>
                 <h1 className='text-center py-3 text-xl font-bold'>Done</h1>
+                <CompletedTasks tasks={tasks.todos} handleEdit={handleEdit} handleMarkRunning={handleMarkRunning}
+                    handleMarkAsDone={handleMarkAsDone} handleDelete={handleDelete}
+                />
 
 
             </div>

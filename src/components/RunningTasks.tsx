@@ -1,8 +1,15 @@
 'use client'
+import { TTasksComponentProps } from '@/types'
 import React from 'react'
+import TaskCard from './TaskCard'
 
-export default function RunningTasks() {
+export default function RunningTasksTasksList({ tasks, handleMarkRunning, handleEdit, handleDelete, handleMarkAsDone, }: TTasksComponentProps) {
     return (
-        <div>RunningTasks</div>
+        <div>
+            {
+                tasks.map(task => <TaskCard key={task.id} task={task} handleEdit={handleEdit} handleMarkRunning={handleMarkRunning}
+                    handleMarkAsDone={handleMarkAsDone} handleDelete={handleDelete} />)
+            }
+        </div>
     )
 }
