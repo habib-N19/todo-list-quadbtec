@@ -1,16 +1,16 @@
 'use client'
-import { useAppSelector } from '@/redux/hooks'
 import React from 'react'
+import TaskCard from './TaskCard'
+import { TTasksComponentProps } from '@/types'
 
-export default function TasksList() {
-    const tasks = useAppSelector(state => state.todo)
+export default function TasksList({ tasks, handleMarkRunning, handleEdit, handleDelete, handleMarkAsDone, }: TTasksComponentProps) {
+
     console.log(tasks)
     return (
         <div>
             {
-                tasks.todos.map(task => {
-                    return <div key={task.id}>{task.task}</div>
-                })
+                tasks.map(task => <TaskCard key={task.id} task={task} handleEdit={handleEdit} handleMarkRunning={handleMarkRunning}
+                    handleMarkAsDone={handleMarkAsDone} handleDelete={handleDelete} />)
             }
         </div>
     )

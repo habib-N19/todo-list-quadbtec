@@ -2,15 +2,9 @@
 import React from 'react'
 import { Card, CardFooter, CardTitle } from './ui/card'
 import { Button } from './ui/button'
-import { TTodo } from '@/redux/features/to-do/todoSlice';
 import { CheckCheckIcon, DeleteIcon, Edit, PlayCircleIcon } from 'lucide-react';
-type TTaskCardProps = {
-    task: TTodo;
-    handleMarkRunning: (id: string) => void;
-    handleEdit: (id: string) => void;
-    handleDelete: (id: string) => void;
-    handleMarkAsDone: (id: string) => void;
-};
+import { TTaskCardProps } from '@/types';
+
 export default function TaskCard({ task, handleMarkRunning, handleEdit, handleDelete, handleMarkAsDone, }: TTaskCardProps) {
     return (
         <Card className='p-2'>

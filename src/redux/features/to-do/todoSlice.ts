@@ -1,13 +1,6 @@
+import { TTodoState } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
-export type TTodo = {
-	id: string;
-	task: string;
-	running: boolean;
-	completed: boolean;
-};
-type TTodoState = {
-	todos: TTodo[];
-};
+
 const initialState: TTodoState = {
 	todos: [],
 };
