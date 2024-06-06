@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# QuadB Tech Todo application
 
-## Getting Started
+This is a simple todo application that allows users to create, read, update and delete tasks. The application is built using Nextjs 14, redux toolkit, and shadcn-ui.
 
-First, run the development server:
+## Project setup
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Clone the repository by running `git clone https://github.com/habib-N19/todo-list-quadbtec.git` in your terminal.
+2. Change directory to the project folder by running `cd todo-list-quadbtec`.
+3. Run `yarn install` to install the project dependencies.
+4. Run `yarn dev` to start the development server.
+5. Open your browser and navigate to `http://localhost:3000` to view the application.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Create To do task
+- Move the task to running state
+- Move the task to completed state
+- Edit the task
+- Delete the task
+- Responsive design
+- Dark mode
+- Redux toolkit for state management
+- Redux persist for persisting state in local storage
+- Shadcn-ui for styling
+- Nextjs 14
+- Typescript for static type checking
+- React hook form
+- Mobile responsive
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Technologies
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Nextjs 14
+- Redux toolkit
+- Shadcn-ui
+- Typescript
+- React hook form
+- Redux persist
